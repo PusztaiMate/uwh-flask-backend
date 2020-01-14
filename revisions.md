@@ -4,6 +4,7 @@
 
 ### Add postgres image for local development and testing
 * Add the service to the docker-compose file
+* Add seed_db command, that creates some dummy data in the db
 
 ### Set up configuration
 * Create a config.py module inside the project to hold the configs

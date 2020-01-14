@@ -11,7 +11,7 @@ class DevelopmentConfig(BasicConfig):
 
 
 class TestingConfig(BasicConfig):
-    TESTING = False
+    TESTING = True
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_TEST_URL")
 
 
