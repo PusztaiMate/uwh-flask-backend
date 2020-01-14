@@ -2,6 +2,8 @@
 
 ## Changelog
 
+### Add pytest framework for testing
+
 ### Add postgres image for local development and testing
 * Add the service to the docker-compose file
 * Add seed_db command, that creates some dummy data in the db

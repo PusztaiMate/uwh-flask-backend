@@ -16,8 +16,10 @@ def create_app(script_info=None):
     db.init_app(app)
 
     from project.api.ping import ping_blueprint
+    from project.api.players import players_blueprint
 
     app.register_blueprint(ping_blueprint)
+    app.register_blueprint(players_blueprint)
 
     from project.api.models import Player, Training, Club
 
