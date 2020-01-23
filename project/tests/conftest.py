@@ -39,7 +39,7 @@ def test_db_for_clubs():
     db.drop_all()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def test_db_for_trainings():
     db.create_all()
     p1, p2, p3 = (

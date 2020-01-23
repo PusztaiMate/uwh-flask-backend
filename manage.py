@@ -1,7 +1,10 @@
 from flask.cli import FlaskGroup
 
 from project import create_app, db
+<<<<<<< HEAD
 from project.api.models import Player, Training, Club
+=======
+>>>>>>> WIP add remaining HTTP routes
 from project.tests.db_utils import (
     add_club_if_not_present,
     add_player_if_not_present,
@@ -24,7 +27,11 @@ def recreate_db():
 def seed_db():
     p = add_player_if_not_present("Jakab Gipsz")
     c = add_club_if_not_present("Egyszusz VSE")
+<<<<<<< HEAD
     add_training(players=[p,], club_id=c.id)
+=======
+    add_training(players=[p], club_id=c.id)
+>>>>>>> WIP add remaining HTTP routes
 
 
 if __name__ == "__main__":

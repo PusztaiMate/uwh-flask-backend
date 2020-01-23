@@ -7,7 +7,11 @@ from project.tests.db_utils import add_training
 @pytest.mark.parametrize("date", [None, "2020-01-01T19:30"])
 @pytest.mark.parametrize("player_ids", [None, [], [1], [1, 2, 3]])
 @pytest.mark.parametrize(
+<<<<<<< HEAD
     ["club_id", "status_code", "message"], [(1, 201, ") was added",),],
+=======
+    ["club_id", "status_code", "message"], [(1, 201, ") was added",)],
+>>>>>>> WIP add remaining HTTP routes
 )
 def test_add_training(
     test_app, test_db_for_trainings, club_id, date, player_ids, status_code, message
@@ -31,7 +35,11 @@ def test_add_training(
 
 def test_all_trainings(test_app, test_database):
     t1 = add_training()
+<<<<<<< HEAD
     t2 = add_training()
+=======
+    _ = add_training()
+>>>>>>> WIP add remaining HTTP routes
     client = test_app.test_client()
 
     resp = client.get("/trainings")
@@ -40,3 +48,19 @@ def test_all_trainings(test_app, test_database):
     assert resp.status_code == 200
     assert len(data) == 2
     assert t1.club_id == data[0]["club_id"]
+<<<<<<< HEAD
+=======
+
+
+def test_get_sinle_training(test_app, test_database):
+    t1 = add_training()
+    client = test_app.test_client()
+    resp = client.get(f"/trainings/{t1.id}")
+
+    assert resp.status_code == 200
+
+    data = json.loads(resp.data.decode())
+
+    assert t1.id == data["id"]
+    assert t1.date.isoformat().replace("T", " ") == data["date"]
+>>>>>>> WIP add remaining HTTP routes
