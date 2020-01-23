@@ -14,8 +14,9 @@ trainings = api.model(
     "Training",
     {
         "id": Integer(readonly=True),
-        "date": String(required=True, default=None),
-        "player_ids": List(Integer, default=[]),
+        "date": String(required=False, default=None),
+        "player_ids": List(Integer, required=False, default=[]),
+        "club_id": Integer(required=False, default=None),
     },
 )
 
@@ -38,3 +39,7 @@ class TrainingsList(Resource):
 
         response_object["message"] = f"{t} was added."
         return response_object, 201
+
+    @api.marshal_with(trainings, as_list=True)
+    def get(self):
+        return Training.query.all(), 200

@@ -2,6 +2,11 @@ from flask.cli import FlaskGroup
 
 from project import create_app, db
 from project.api.models import Player, Training, Club
+from project.tests.db_utils import (
+    add_club_if_not_present,
+    add_player_if_not_present,
+    add_training,
+)
 
 
 app = create_app()
@@ -17,15 +22,9 @@ def recreate_db():
 
 @cli.command("seed_db")
 def seed_db():
-    p = Player("Jakab", "Gipsz", "jakab@gipsz.hu")
-    db.session.add(p)
-    db.session.commit()
-    c = Club("Best VSE")
-    db.session.add(c)
-    db.session.commit()
-    t = Training(c.id, "2020-01-01T19:30:00", players=[p])
-    db.session.add(t)
-    db.session.commit()
+    p = add_player_if_not_present("Jakab Gipsz")
+    c = add_club_if_not_present("Egyszusz VSE")
+    add_training(players=[p,], club_id=c.id)
 
 
 if __name__ == "__main__":

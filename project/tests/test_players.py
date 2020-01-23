@@ -2,6 +2,8 @@ import json
 
 import pytest
 
+from project.tests.db_utils import add_player_if_not_present
+
 
 @pytest.mark.parametrize(
     ["fname", "lname", "email", "status_code", "message"],
@@ -13,7 +15,7 @@ import pytest
         ["Janos", "Gipsz", None, 400, "Input payload validation failed"],
     ],
 )
-def test_add_user(test_app, test_database, fname, lname, email, status_code, message):
+def test_add_player(test_app, test_database, fname, lname, email, status_code, message):
     client = test_app.test_client()
     resp = client.post(
         "/players",
@@ -25,3 +27,28 @@ def test_add_user(test_app, test_database, fname, lname, email, status_code, mes
 
     assert resp.status_code == status_code
     assert message in data["message"]
+
+
+def test_get_single_player(test_app, test_database):
+    player = add_player_if_not_present("Jakab Gipsz")
+    client = test_app.test_client()
+    resp = client.get(f"/players/{player.id}")
+
+    data = json.loads(resp.data.decode())
+    assert resp.status_code == 200
+    assert data["fname"] == "Jakab"
+    assert data["lname"] == "Gipsz"
+
+
+def test_get_all_players(test_app, test_database):
+    p1 = add_player_if_not_present("Jakab Gipsz")
+    p2 = add_player_if_not_present("János Gipsz")
+    client = test_app.test_client()
+
+    resp = client.get("/players")
+    data = json.loads(resp.data.decode())
+
+    assert resp.status_code == 200
+    assert len(data) == 2
+    assert data[0]["fname"] == p1.fname
+    assert data[1]["lname"] == p2.lname

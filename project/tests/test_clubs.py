@@ -6,7 +6,7 @@ import pytest
 @pytest.mark.parametrize("trainings", [None, [1], [1, 2]])
 @pytest.mark.parametrize(
     ["name", "status_code", "message"],
-    [("Egyszusz VSE", 201, "Egyszusz VSE was added"),],
+    [("Egyszusz VSE", 201, "Egyszusz VSE was added")],
 )
 def test_add_club(
     test_app, test_db_for_clubs, name, players, trainings, status_code, message

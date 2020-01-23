@@ -41,3 +41,14 @@ class PlayersList(Resource):
         db.session.commit()
         response_object["message"] = f"{fname} {lname} was added!"
         return response_object, 201
+
+    @api.marshal_with(player, as_list=True)
+    def get(self):
+        return Player.query.all(), 200
+
+
+@api.route("/players/<int:player_id>")
+class Players(Resource):
+    @api.marshal_with(player)
+    def get(self, player_id):
+        return Player.query.filter_by(id=player_id).first(), 200

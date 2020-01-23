@@ -44,9 +44,6 @@ class Training(db.Model):
 
     def __init__(self, club_id=None, date=None, player_ids=None):
         self.club_id = club_id
-        self.players = (
-            [Player.query.get(p_id) for p_id in player_ids] if player_ids else []
-        )
         if isinstance(date, str):
             self.date = parser.parse(date)
         elif isinstance(date, datetime):
