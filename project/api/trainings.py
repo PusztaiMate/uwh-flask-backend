@@ -15,10 +15,6 @@ training = api.model(
     {
         "id": Integer(readonly=True),
         "date": String(required=False, default=None),
-<<<<<<< HEAD
-        "player_ids": List(Integer, required=False, default=[]),
-=======
->>>>>>> WIP add remaining HTTP routes
         "club_id": Integer(required=False, default=None),
     },
 )
@@ -43,11 +39,6 @@ class TrainingsList(Resource):
         response_object["message"] = f"{t} was added."
         return response_object, 201
 
-<<<<<<< HEAD
-    @api.marshal_with(trainings, as_list=True)
-    def get(self):
-        return Training.query.all(), 200
-=======
     @api.marshal_with(training, as_list=True)
     def get(self):
         return Training.query.all(), 200
@@ -58,4 +49,3 @@ class Trainings(Resource):
     @api.marshal_with(training)
     def get(self, training_id):
         return Training.query.filter_by(id=training_id).first(), 200
->>>>>>> WIP add remaining HTTP routes

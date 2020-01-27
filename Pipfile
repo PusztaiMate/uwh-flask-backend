@@ -17,7 +17,7 @@ rope = "*"
 httpie = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "*"
 
 [pipenv]
 allow_prereleases = true

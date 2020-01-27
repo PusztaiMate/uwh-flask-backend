@@ -51,3 +51,11 @@ def test_db_for_trainings():
     yield db
     db.session.remove()
     db.drop_all()
+
+
+@pytest.fixture(scope="function")
+def empty_db():
+    db.create_all()
+    yield db
+    db.session.remove()
+    db.drop_all()

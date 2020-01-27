@@ -19,7 +19,7 @@ class Player(db.Model):
     email = db.Column(db.String(128), nullable=False, unique=True)
     club_id = db.Column(db.Integer, db.ForeignKey("clubs.id"))
     trainings = db.relationship(
-        "Training", secondary=players_to_trainings, backref=db.backref("players"),
+        "Training", secondary=players_to_trainings
     )
 
     def __init__(self, fname, lname, email):
@@ -39,10 +39,14 @@ class Training(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date = db.Column(db.DateTime())
     club_id = db.Column(db.Integer, db.ForeignKey("clubs.id"))
+    players = db.relationship(
+        "Player", secondary=players_to_trainings
+    )
+
 
     def __init__(self, club_id=None, date=None, player_ids=None):
         self.player_ids = player_ids or []
-        self.players = [Player.query.get(p_id) for p_id in player_ids if player_ids]
+        self.players = [Player.query.get(p_id) for p_id in self.player_ids]
         self.club_id = club_id
         if isinstance(date, str):
             self.date = parser.parse(date)
