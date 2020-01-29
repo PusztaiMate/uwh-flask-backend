@@ -1,10 +1,9 @@
 from flask import Blueprint, request
 from flask_restplus import Api, Resource
-from flask_restplus.fields import String, Integer
+from flask_restplus.fields import Integer, String
 
 from project import db
 from project.api.models import Training
-
 
 trainings_blueprint = Blueprint("trainings", __name__)
 api = Api(trainings_blueprint)

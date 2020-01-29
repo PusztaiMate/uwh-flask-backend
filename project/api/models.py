@@ -1,7 +1,8 @@
 from datetime import datetime
-from dateutil import parser
-from project import db
 
+from dateutil import parser
+
+from project import db
 
 players_to_trainings = db.Table(
     "players_to_trainings",

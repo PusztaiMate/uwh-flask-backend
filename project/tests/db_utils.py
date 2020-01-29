@@ -1,5 +1,5 @@
 from project import db
-from project.api.models import Player, Club, Training
+from project.api.models import Club, Player, Training
 
 
 def add_player(name: str) -> Player:

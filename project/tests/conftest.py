@@ -1,11 +1,8 @@
 import pytest
 
-from project import db, create_app
-from project.tests.db_utils import (
-    add_club_if_not_present,
-    add_player_if_not_present,
-    add_training,
-)
+from project import create_app, db
+from project.tests.db_utils import (add_club_if_not_present,
+                                    add_player_if_not_present, add_training)
 
 
 @pytest.fixture(scope="module")

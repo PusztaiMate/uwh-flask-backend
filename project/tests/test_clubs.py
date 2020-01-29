@@ -1,9 +1,11 @@
 import json
-import pytest
 from typing import List
 
-from project.tests.db_utils import add_club_if_not_present, add_player_if_not_present
-from project.api.models import Player, Club
+import pytest
+
+from project.api.models import Club, Player
+from project.tests.db_utils import (add_club_if_not_present,
+                                    add_player_if_not_present)
 
 
 @pytest.mark.parametrize("players", [None, [1], [1, 2, 3]])

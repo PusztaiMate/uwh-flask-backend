@@ -1,4 +1,5 @@
 import json
+
 import pytest
 
 from project.tests.db_utils import add_training
