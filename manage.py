@@ -23,6 +23,7 @@ def recreate_db():
 def seed_db():
     p = add_player_if_not_present("Jakab Gipsz")
     c = add_club_if_not_present("Egyszusz VSE")
+    add_club_if_not_present("Piranha Pécs", players=[p,])
     add_training(players=[p], club_id=c.id)
     c.players.append(p)
     db.session.add(c)

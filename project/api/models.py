@@ -18,9 +18,7 @@ class Player(db.Model):
     lname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(128), nullable=False, unique=True)
     club_id = db.Column(db.Integer, db.ForeignKey("clubs.id"))
-    trainings = db.relationship(
-        "Training", secondary=players_to_trainings
-    )
+    trainings = db.relationship("Training", secondary=players_to_trainings)
 
     def __init__(self, fname, lname, email):
         self.fname = fname
@@ -32,6 +30,9 @@ class Player(db.Model):
             f"Player(fname={self.fname!r}, lname={self.lname!r}, email={self.email!r})"
         )
 
+    def __str__(self):
+        return f"{self.fname} {self.lname}"
+
 
 class Training(db.Model):
     __tablename__ = "trainings"
@@ -39,10 +40,7 @@ class Training(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date = db.Column(db.DateTime())
     club_id = db.Column(db.Integer, db.ForeignKey("clubs.id"))
-    players = db.relationship(
-        "Player", secondary=players_to_trainings
-    )
-
+    players = db.relationship("Player", secondary=players_to_trainings)
 
     def __init__(self, club_id=None, date=None, player_ids=None):
         self.player_ids = player_ids or []

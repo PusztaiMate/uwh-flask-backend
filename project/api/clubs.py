@@ -43,7 +43,9 @@ class ClubsList(Resource):
         )
         response_object = {}
 
-        db.session.add(Club(name=name, player_ids=player_ids, training_ids=trainings_ids))
+        db.session.add(
+            Club(name=name, player_ids=player_ids, training_ids=trainings_ids)
+        )
         db.session.commit()
 
         response_object["message"] = f"{name} was added."
@@ -52,3 +54,10 @@ class ClubsList(Resource):
     @api.marshal_with(clubs_out, as_list=True)
     def get(self):
         return Club.query.all(), 200
+
+
+@api.route("/clubs/<int:club_id>")
+class Clubs(Resource):
+    @api.marshal_with(clubs_out)
+    def get(self, club_id):
+        return Club.query.filter_by(id=club_id).first(), 200
