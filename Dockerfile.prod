@@ -1,0 +1,23 @@
+FROM python:3.8.0-alpine
+
+RUN apk update && \
+    apk add --virtual build-deps gcc python-dev musl-dev && \
+    apk add postgresql-dev && \
+    apk add netcat-openbsd
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV FLASK_ENV production
+ENV APP_SETTINGS project.config.ProductionConfig
+
+WORKDIR /usr/src/app
+
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
+
+RUN adduser -D uwhbackend
+USER uwhbackend
+
+CMD gunicorn --bind 0.0.0.0:$PORT manage:app
