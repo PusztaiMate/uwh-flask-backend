@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Játékosok
+{% endblock title %}
+
+{% block content %}
+<ul style="list-style-type:none">
+    {% for player in players %}
+    <li>{{ loop.index }}: {{ player }}, {{ player.trainings|length }} edzés</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

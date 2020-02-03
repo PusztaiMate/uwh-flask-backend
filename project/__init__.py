@@ -18,11 +18,13 @@ def create_app(script_info=None):
     from project.api.players import players_blueprint
     from project.api.clubs import clubs_blueprint
     from project.api.trainings import trainings_blueprint
+    from project.gui.views import views_blueprint
 
     app.register_blueprint(ping_blueprint)
     app.register_blueprint(players_blueprint)
     app.register_blueprint(clubs_blueprint)
     app.register_blueprint(trainings_blueprint)
+    app.register_blueprint(views_blueprint)
 
     from project.api.models import Player, Training, Club
 

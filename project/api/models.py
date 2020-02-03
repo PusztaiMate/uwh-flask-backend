@@ -58,7 +58,8 @@ class Training(db.Model):
         return f"Training(club_id={self.club_id!r}, date={self.date!r}, players={self.players!r})"
 
     def __str__(self):
-        return f"Training({self.date.isoformat()})"
+        return f"Training({self.date.isoformat()}, {len(self.players)} players)"
+
 
 
 class Club(db.Model):
