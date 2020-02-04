@@ -1,8 +1,11 @@
 from flask.cli import FlaskGroup
 
 from project import create_app, db
-from project.tests.db_utils import (add_club_if_not_present,
-                                    add_player_if_not_present, add_training)
+from project.tests.db_utils import (
+    add_club_if_not_present,
+    add_player_if_not_present,
+    add_training,
+)
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)

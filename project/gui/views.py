@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 
-from project import db
 from project.api.models import Training, Player
 
 
@@ -11,14 +10,15 @@ class DummyTraining:
     def __init__(self, date, num_of_players):
         self.date = date
         self.num_of_players = num_of_players
-    
+
     def __str__(self):
         return f"Training({self.date}, {self.num_of_players} players)"
-    
+
+
 dummy_trainings = [
     DummyTraining("2020-01-01", 20),
     DummyTraining("2020-01-03", 22),
-    DummyTraining("2020-01-08", 13)
+    DummyTraining("2020-01-08", 13),
 ]
 
 

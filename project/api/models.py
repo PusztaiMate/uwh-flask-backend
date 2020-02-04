@@ -61,7 +61,6 @@ class Training(db.Model):
         return f"Training({self.date.isoformat()}, {len(self.players)} players)"
 
 
-
 class Club(db.Model):
     __tablename__ = "clubs"
 
