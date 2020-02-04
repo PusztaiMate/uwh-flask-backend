@@ -15,7 +15,7 @@ player = api.model(
         "id": Integer(readonly=True),
         "fname": String(required=True),
         "lname": String(required=True),
-        "email": String(required=True),
+        "email": String(required=False),
     },
 )
 
@@ -31,10 +31,6 @@ class PlayersList(Resource):
             post_data.get("email"),
         )
         response_object = {}
-
-        if Player.query.filter_by(email=email).first():
-            response_object["message"] = f"{email} already exists."
-            return response_object, 400
 
         db.session.add(Player(fname=fname, lname=lname, email=email))
         db.session.commit()
