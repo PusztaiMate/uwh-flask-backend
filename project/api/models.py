@@ -17,7 +17,7 @@ class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     fname = db.Column(db.String(64), nullable=False)
     lname = db.Column(db.String(64), nullable=False)
-    email = db.Column(db.String(128), nullable=False, unique=True)
+    email = db.Column(db.String(128), nullable=True, unique=True)
     club_id = db.Column(db.Integer, db.ForeignKey("clubs.id"))
     trainings = db.relationship("Training", secondary=players_to_trainings)
 

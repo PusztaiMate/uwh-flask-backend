@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
-
 {% block title %}
 Játékosok
 {% endblock title %}
-
 {% block content %}
-<ul style="list-style-type:none">
-    {% for player in players %}
-    <li>{{ loop.index }}: {{ player }}, {{ player.trainings|length }} edzés</li>
-    {% endfor %}
-</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Név</th>
+            <th>Edzések száma</th>
+            <th>Részvételi arány</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Név</th>
+            <th>Edzések száma</th>
+            <th>Részvételi arány</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <th> {{ player.name }}</th>
+            <th> {{ player.num_trainings }}</th>
+            <th> {{ player.training_percentage }}%</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

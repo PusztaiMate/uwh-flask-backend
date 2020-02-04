@@ -3,30 +3,24 @@ from flask import Blueprint, render_template
 from project.api.models import Training, Player
 
 
-views_blueprint = Blueprint("views", __name__, url_prefix="/statisztika")
+stats_blueprint = Blueprint("views", __name__, url_prefix="/stats")
 
 
-class DummyTraining:
-    def __init__(self, date, num_of_players):
-        self.date = date
-        self.num_of_players = num_of_players
-
-    def __str__(self):
-        return f"Training({self.date}, {self.num_of_players} players)"
-
-
-dummy_trainings = [
-    DummyTraining("2020-01-01", 20),
-    DummyTraining("2020-01-03", 22),
-    DummyTraining("2020-01-08", 13),
-]
-
-
-@views_blueprint.route("/edzés", methods=["GET"])
+@stats_blueprint.route("/trainings", methods=["GET"])
 def trainings():
     return render_template("trainings.html", trainings=Training.query.all())
 
 
-@views_blueprint.route("/játékos", methods=["GET"])
+@stats_blueprint.route("/players", methods=["GET"])
 def players():
-    return render_template("players.html", players=Player.query.all())
+    raw_players = Player.query.all()
+    # shitty counter but the number is low, so...
+    num_of_trainings = len(Training.query.all())
+    players = []
+    for p in raw_players:
+        players.append({
+            "name": f"{p.lname} {p.fname}",
+            "num_trainings": len(p.trainings),
+            "training_percentage": int(len(p.trainings) / num_of_trainings * 100)
+        })
+    return render_template("players.html", players=players)

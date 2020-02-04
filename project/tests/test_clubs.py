@@ -18,7 +18,7 @@ def test_add_club(
 ):
     client = test_app.test_client()
     resp = client.post(
-        "/clubs",
+        "/api/clubs",
         data=json.dumps({"name": name, "players": players, "trainings": trainings}),
         content_type="application/json",
     )
@@ -33,7 +33,7 @@ def test_all_clubs(test_app, empty_db):
     c2, (p3,) = add_club_with_players("Club GETALL_2", ["Julia Gipsz"])
     client = test_app.test_client()
 
-    resp = client.get("/clubs")
+    resp = client.get("/api/clubs")
     data = json.loads(resp.data.decode())
 
     assert resp.status_code == 200
@@ -49,13 +49,13 @@ def test_get_single_club(test_app, empty_db):
     c2, (p3,) = add_club_with_players("Club GETALL_2", ["Julia Gipsz"])
     client = test_app.test_client()
 
-    resp = client.get(f"/clubs/{c1.id}")
+    resp = client.get(f"/api/clubs/{c1.id}")
     data = json.loads(resp.data.decode())
     assert resp.status_code == 200
     assert len(data["players"]) == 2
     assert data["name"] == c1.name
 
-    resp = client.get(f"/clubs/{c2.id}")
+    resp = client.get(f"/api/clubs/{c2.id}")
     data = json.loads(resp.data.decode())
     assert resp.status_code == 200
     assert len(data["players"]) == 1

@@ -22,7 +22,7 @@ def test_add_training(
         payload["date"] = date
 
     resp = client.post(
-        "/trainings", data=json.dumps(payload), content_type="application/json",
+        "/api/trainings", data=json.dumps(payload), content_type="application/json",
     )
     data = json.loads(resp.data.decode())
 
@@ -35,7 +35,7 @@ def test_all_trainings(test_app, test_database):
     _ = add_training()
     client = test_app.test_client()
 
-    resp = client.get("/trainings")
+    resp = client.get("/api/trainings")
     data = json.loads(resp.data.decode())
 
     assert resp.status_code == 200
@@ -46,7 +46,7 @@ def test_all_trainings(test_app, test_database):
 def test_get_sinle_training(test_app, test_database):
     t1 = add_training()
     client = test_app.test_client()
-    resp = client.get(f"/trainings/{t1.id}")
+    resp = client.get(f"/api/trainings/{t1.id}")
 
     assert resp.status_code == 200
 

@@ -3,9 +3,28 @@
 Edzések
 {% endblock title %}
 {% block content %}
-<ol>
-    {% for training in trainings %}
-    <li>Időpont: {{ training.date.strftime('%Y-%m-%d') }}, játékosok száma: {{ training.players|length }}</li>
-    {% endfor %}
-</ol>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Időpont</th>
+            <th>Játékosok száma</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Időpont</th>
+            <th>Játékosok száma</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            {% for training in trainings %}
+            <th> {{ training.date.strftime('%Y-%m-%d') }} </th>
+            <th> {{ training.players | length }} </th>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% for training in trainings %}
+{% endfor %}
 {% endblock content %}

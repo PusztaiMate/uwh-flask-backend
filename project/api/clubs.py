@@ -5,7 +5,7 @@ from flask_restplus.fields import Integer, List, String
 from project import db
 from project.api.models import Club
 
-clubs_blueprint = Blueprint("clubs", __name__)
+clubs_blueprint = Blueprint("clubs", __name__, url_prefix="/api")
 api = Api(clubs_blueprint)
 
 

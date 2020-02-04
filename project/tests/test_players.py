@@ -18,7 +18,7 @@ from project.tests.db_utils import add_player_if_not_present
 def test_add_player(test_app, test_database, fname, lname, email, status_code, message):
     client = test_app.test_client()
     resp = client.post(
-        "/players",
+        "/api/players",
         data=json.dumps({"fname": fname, "lname": lname, "email": email}),
         content_type="application/json",
     )
@@ -32,7 +32,7 @@ def test_add_player(test_app, test_database, fname, lname, email, status_code, m
 def test_get_single_player(test_app, test_database):
     player = add_player_if_not_present("Jakab Gipsz")
     client = test_app.test_client()
-    resp = client.get(f"/players/{player.id}")
+    resp = client.get(f"/api/players/{player.id}")
 
     data = json.loads(resp.data.decode())
     assert resp.status_code == 200
@@ -45,7 +45,7 @@ def test_get_all_players(test_app, test_database):
     p2 = add_player_if_not_present("János Gipsz")
     client = test_app.test_client()
 
-    resp = client.get("/players")
+    resp = client.get("/api/players")
     data = json.loads(resp.data.decode())
 
     assert resp.status_code == 200
