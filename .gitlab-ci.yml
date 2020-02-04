@@ -35,4 +35,4 @@ test:
     DATABASE_TEST_URL: postgres://runner@postgres:5432/players_test
   script:
     - pytest -p no:warnings
-    - flake8 project
+    - flake8 --max-line-length=88 project

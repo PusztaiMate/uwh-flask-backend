@@ -55,7 +55,10 @@ class Training(db.Model):
             self.date = datetime.now()
 
     def __repr__(self):
-        return f"Training(club_id={self.club_id!r}, date={self.date!r}, players={self.players!r})"
+        return (
+            f"Training(club_id={self.club_id!r},"
+            f"date={self.date!r}, players={self.players!r})"
+        )
 
     def __str__(self):
         return f"Training({self.date.isoformat()}, {len(self.players)} players)"
@@ -81,4 +84,8 @@ class Club(db.Model):
         )
 
     def __repr__(self):
-        return f"Club(name={self.name!r}, players={self.players!r}, trainings={self.trainings!r})"
+        return (
+            f"Club(name={self.name!r}",
+            f"players={self.players!r}",
+            f"trainings={self.trainings!r})",
+        )
