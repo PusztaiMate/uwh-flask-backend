@@ -32,7 +32,7 @@ test:
     POSTGRES_DB: players
     POSTGRES_USER: runner
     POSTGRES_PASSWORD: ""
-    DATABASE_TEST_URL: postgres://runner@postgres:5432/users
+    DATABASE_TEST_URL: postgres://runner@postgres:5432/players_test
   script:
     - pytest -p no:warnings
     - flake8 project
