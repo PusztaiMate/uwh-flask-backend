@@ -29,7 +29,7 @@ test:
   services:
     - postgres:latest
   variables:
-    POSTGRES_DB: players
+    POSTGRES_DB: players_test
     POSTGRES_USER: runner
     POSTGRES_PASSWORD: ""
     DATABASE_TEST_URL: postgres://runner@postgres:5432/players_test
