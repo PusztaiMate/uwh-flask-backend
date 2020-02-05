@@ -3,7 +3,7 @@ from flask import Blueprint, render_template
 from project.api.models import Training, Player
 
 
-stats_blueprint = Blueprint("views", __name__, url_prefix="/stats")
+stats_blueprint = Blueprint("stats", __name__, url_prefix="/stats")
 
 
 @stats_blueprint.route("/trainings", methods=["GET"])
@@ -18,9 +18,11 @@ def players():
     num_of_trainings = len(Training.query.all())
     players = []
     for p in raw_players:
-        players.append({
-            "name": f"{p.lname} {p.fname}",
-            "num_trainings": len(p.trainings),
-            "training_percentage": int(len(p.trainings) / num_of_trainings * 100)
-        })
+        players.append(
+            {
+                "name": f"{p.lname} {p.fname}",
+                "num_trainings": len(p.trainings),
+                "training_percentage": int(len(p.trainings) / num_of_trainings * 100),
+            }
+        )
     return render_template("players.html", players=players)

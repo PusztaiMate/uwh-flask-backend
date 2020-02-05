@@ -14,12 +14,14 @@ def create_app(script_info=None):
 
     db.init_app(app)
 
+    from project.views.index import index_blueprint
     from project.api.ping import ping_blueprint
     from project.api.players import players_blueprint
     from project.api.clubs import clubs_blueprint
     from project.api.trainings import trainings_blueprint
-    from project.gui.views import stats_blueprint
+    from project.views.stats import stats_blueprint
 
+    app.register_blueprint(index_blueprint)
     app.register_blueprint(ping_blueprint)
     app.register_blueprint(players_blueprint)
     app.register_blueprint(clubs_blueprint)

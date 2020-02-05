@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+UWHome
+{% endblock title %}
+
+{% block content %}
+<b>Üdv az erősen fejlesztés alatt lévő honlapon!</b>
+<h3>Hasznosabb linkek</h3>
+<ul>
+    <li><a href={{ url_for('stats.trainings') }}>Edzés statisztikák</a></li>
+    <li><a href={{ url_for('stats.players') }}>Játékos statisztikák</a></li>
+</ul>
+{% endblock content %}
