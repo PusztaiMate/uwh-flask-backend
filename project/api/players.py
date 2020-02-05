@@ -32,6 +32,10 @@ class PlayersList(Resource):
         )
         response_object = {}
 
+        if email is not None and Player.query.filter_by(email=email).first():
+            response_object["message"] = f"{email} already exists."
+            return response_object, 400
+
         db.session.add(Player(fname=fname, lname=lname, email=email))
         db.session.commit()
         response_object["message"] = f"{fname} {lname} was added!"

@@ -1,4 +1,5 @@
 from datetime import datetime
+from random import randint
 
 from dateutil import parser
 
@@ -17,14 +18,21 @@ class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     fname = db.Column(db.String(64), nullable=False)
     lname = db.Column(db.String(64), nullable=False)
-    email = db.Column(db.String(128), nullable=True, unique=True)
+    email = db.Column(db.String(128), nullable=False, unique=True)
     club_id = db.Column(db.Integer, db.ForeignKey("clubs.id"))
     trainings = db.relationship("Training", secondary=players_to_trainings)
 
     def __init__(self, fname, lname, email):
         self.fname = fname
         self.lname = lname
-        self.email = email
+        # TODO: fix this below
+        if email is None:
+            dummy_email = (
+                f"{self.fname.lower()}.{self.lname.lower()}{randint(0,100)}@vizihoki.hu"
+            )
+            self.email = dummy_email
+        else:
+            self.email = email
 
     def __repr__(self):
         return (

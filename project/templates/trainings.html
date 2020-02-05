@@ -3,7 +3,7 @@
 Edzések
 {% endblock title %}
 {% block content %}
-<table class="table is-striped is-bordered">
+<table class="table is-striped">
     <thead>
         <tr>
             <th>Időpont</th>
@@ -20,7 +20,7 @@ Edzések
         {% for training in trainings %}
         <tr>
             <th> {{ training.date.strftime('%Y-%m-%d') }} </th>
-            <th> {{ training.players | length }} </th>
+            <th align="center"> {{ training.players | length }} </th>
         </tr>
         {% endfor %}
     </tbody>

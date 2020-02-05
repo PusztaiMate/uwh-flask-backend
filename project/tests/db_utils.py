@@ -21,12 +21,12 @@ def add_player_if_not_present(name: str) -> Player:
     return p
 
 
-def add_training(players: list = None, club_id: int = None) -> Training:
+def add_training(players: list = None, club_id: int = None, date=None) -> Training:
     if players:
         player_ids = [p.id for p in players]
     else:
         player_ids = []
-    t = Training(player_ids=player_ids, club_id=club_id)
+    t = Training(player_ids=player_ids, club_id=club_id, date=date)
     db.session.add(t)
     db.session.commit()
     return t
