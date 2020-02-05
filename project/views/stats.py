@@ -25,4 +25,5 @@ def players():
                 "training_percentage": int(len(p.trainings) / num_of_trainings * 100),
             }
         )
+    players.sort(key=lambda p: p["name"])
     return render_template("players.html", players=players)
