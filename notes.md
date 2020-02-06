@@ -8,9 +8,9 @@
 ```
 
 ## TODO
-- [ ] Make burger work on mobile as well
-    - [ ] need to know how to add JS to project
-    - [ ] write short JS to do the work
+- [x] Make burger work on mobile as well
+    - [x] need to know how to add JS to project
+    - [x] write short JS to do the work
 - [ ] Add pages to easily add players and trainings
 - [ ] Check how to upgrade db
     - do test on local db
