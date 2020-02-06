@@ -1,2 +1,0 @@
-Add image that is present in the "static" folder
-<img src="/static/logo.png" width="40" height="80">
