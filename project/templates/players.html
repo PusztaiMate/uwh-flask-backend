@@ -9,6 +9,7 @@ Játékosok
             <th>Név</th>
             <th>Edzések száma</th>
             <th>Részvételi arány</th>
+            <th>%</th>
         </tr>
     </thead>
     <tfoot>
@@ -16,6 +17,7 @@ Játékosok
             <th>Név</th>
             <th>Edzések száma</th>
             <th>Részvételi arány</th>
+            <th>%</th>
         </tr>
     </tfoot>
     <tbody>
@@ -23,7 +25,9 @@ Játékosok
         <tr>
             <th> {{ player.name }}</th>
             <th align="center"> {{ player.num_trainings }}</th>
-            <th align="center"> {{ player.training_percentage }}%</th>
+            <th align="center"><progress class="progress {{ player.chart_color }}"
+                    value={{ player.training_percentage }} max=100>{{ player.training_percentage }}%</progress></th>
+            <th align="center">{{ player.training_percentage }}%</progress></th>
         </tr>
         {% endfor %}
     </tbody>
