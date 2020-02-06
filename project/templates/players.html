@@ -3,31 +3,31 @@
 Játékosok
 {% endblock title %}
 {% block content %}
-<table class="table is-striped">
+<table class="table is-striped is-narrow">
     <thead>
         <tr>
             <th>Név</th>
             <th>Edzések száma</th>
-            <th>Részvételi arány</th>
-            <th>%</th>
+            <th align="center">Részvételi arány</th>
+            <th align="center">%</th>
         </tr>
     </thead>
     <tfoot>
         <tr>
             <th>Név</th>
             <th>Edzések száma</th>
-            <th>Részvételi arány</th>
-            <th>%</th>
+            <th align="center">Részvételi arány</th>
+            <th align="center">%</th>
         </tr>
     </tfoot>
     <tbody>
         {% for player in players %}
         <tr>
-            <th> {{ player.name }}</th>
-            <th align="center"> {{ player.num_trainings }}</th>
-            <th align="center"><progress class="progress {{ player.chart_color }}"
-                    value={{ player.training_percentage }} max=100>{{ player.training_percentage }}%</progress></th>
-            <th align="center">{{ player.training_percentage }}%</progress></th>
+            <td> {{ player.name }}</td>
+            <td align="center"> {{ player.num_trainings }}</td>
+            <td align="center"><progress class="progress is-small {{ player.chart_color }}"
+                    value={{ player.training_percentage }} max=100>{{ player.training_percentage }}%</progress></td>
+            <td align="center">{{ player.training_percentage }}%</progress></td>
         </tr>
         {% endfor %}
     </tbody>
