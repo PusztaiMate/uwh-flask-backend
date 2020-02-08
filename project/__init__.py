@@ -14,19 +14,25 @@ def create_app(script_info=None):
 
     db.init_app(app)
 
+    # views
     from project.views.index import index_blueprint
+    from project.views.tranings import trainings_view
+    from project.views.players import players_view
+
+    # api
     from project.api.ping import ping_blueprint
-    from project.api.players import players_blueprint
+    from project.api.players import players_api
     from project.api.clubs import clubs_blueprint
-    from project.api.trainings import trainings_blueprint
-    from project.views.stats import stats_blueprint
+    from project.api.trainings import trainings_api
 
     app.register_blueprint(index_blueprint)
+    app.register_blueprint(trainings_view)
+    app.register_blueprint(players_view)
+
     app.register_blueprint(ping_blueprint)
-    app.register_blueprint(players_blueprint)
+    app.register_blueprint(players_api)
     app.register_blueprint(clubs_blueprint)
-    app.register_blueprint(trainings_blueprint)
-    app.register_blueprint(stats_blueprint)
+    app.register_blueprint(trainings_api)
 
     from project.api.models import Player, Training, Club
 

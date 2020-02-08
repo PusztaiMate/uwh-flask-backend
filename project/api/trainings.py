@@ -5,8 +5,8 @@ from flask_restplus.fields import Integer, String
 from project import db
 from project.api.models import Training
 
-trainings_blueprint = Blueprint("trainings", __name__, url_prefix="/api")
-api = Api(trainings_blueprint)
+trainings_api = Blueprint("trainings_api", __name__, url_prefix="/api/trainings")
+api = Api(trainings_api)
 
 
 training = api.model(
@@ -19,7 +19,7 @@ training = api.model(
 )
 
 
-@api.route("/trainings")
+@api.route("")
 class TrainingsList(Resource):
     @api.expect(training, validate=True)
     def post(self):
@@ -43,7 +43,7 @@ class TrainingsList(Resource):
         return Training.query.all(), 200
 
 
-@api.route("/trainings/<int:training_id>")
+@api.route("/<int:training_id>")
 class Trainings(Resource):
     @api.marshal_with(training)
     def get(self, training_id):
