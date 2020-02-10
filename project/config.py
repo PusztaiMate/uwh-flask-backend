@@ -4,6 +4,8 @@ import os
 class BasicConfig:
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # TODO:
+    SECRET_KEY = "this shouldn't be here, please move it"
 
 
 class DevelopmentConfig(BasicConfig):

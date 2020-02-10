@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 
+from project import db
 from project.api.models import Player, Training
+from project.views.forms import RegisterPlayerForm
 
 
 players_view = Blueprint("players", __name__, url_prefix="/players")
@@ -10,6 +12,28 @@ players_view = Blueprint("players", __name__, url_prefix="/players")
 def all_players():
     players = prepare_players_dataobject()
     return render_template("players.html", players=players)
+
+
+@players_view.route("/<int:player_id>")
+def get_single_player(player_id: int):
+    player = Player.query.filter_by(id=player_id).first()
+    if not player_id:
+        return render_template("404.html"), 404
+    training_percentage = int(player.get_training_percentage())
+    return render_template(
+        "single_player.html", player=player, training_percentage=training_percentage
+    )
+
+
+@players_view.route("/add", methods=["POST", "GET"])
+def add_player():
+    form = RegisterPlayerForm()
+    if form.validate_on_submit():
+        player = Player(fname=form.fname.data, lname=form.lname.data, email=None)
+        db.session.add(player)
+        db.session.commit()
+        return redirect(url_for("players.get_single_player", player_id=player.id))
+    return render_template("add_player.html", form=form)
 
 
 def prepare_players_dataobject() -> list:

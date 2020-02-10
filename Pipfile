@@ -17,6 +17,8 @@ rope = "*"
 httpie = "*"
 pytest-cov = "*"
 isort = "*"
+flask-wtforms = "*"
+flask-wtf = "*"
 
 [requires]
 python_version = "*"

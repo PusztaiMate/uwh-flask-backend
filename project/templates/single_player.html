@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content is-medium">
+    <h2>{{ player.lname }} {{player.fname}}</h2>
+    <h3>Edzési statisztika</h3>
+    <p>Részvételi arány: {{ training_percentage }}%. </p>
+    <progress class="progress" value={{ training_percentage }} max=100>{{ training_percentage }}%</progress>
+    {% endblock content %}
+</div>

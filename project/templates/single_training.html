@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content is-medium">
+    <h2>{{ training.date.strftime('%Y-%m-%d') }}</h2>
+    <div class="list">
+        {% for player in players %}
+        <a class="list-item" href="{{ url_for('players.get_single_player', player_id=player.id) }}">
+            {{ player.lname }} {{ player.fname }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

@@ -19,8 +19,9 @@ Edzések
     <tbody>
         {% for training in trainings %}
         <tr>
-            <th> {{ training.date.strftime('%Y-%m-%d') }} </th>
-            <th align="center"> {{ training.players | length }} </th>
+            <th> <a href="{{ url_for('trainings.get_single_training', training_id=training.id)}}">
+                    {{ training.date.strftime('%Y-%m-%d') }} </a></th>
+            <th align=" center"> {{ training.players | length }} </th>
         </tr>
         {% endfor %}
     </tbody>

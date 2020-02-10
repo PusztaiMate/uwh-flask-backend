@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content is-medium">
+    <h2>Játékos hozzáadása</h2>
+    <div class="container is-5">
+        <form action="{{ url_for('players.add_player') }}" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.lname.label }} {{ form.lname(size=24, class_="input", style="margin-top: 5px") }}<br>
+            {{ form.fname.label }} {{ form.fname(size=24, class_="input", style="margin-top: 5px") }}<br>
+            <input style="margin-top: 10px;" class="button is-success" type="submit" value="Hozzáad">
+        </form>
+    </div>
+</div>
+{% endblock content %}

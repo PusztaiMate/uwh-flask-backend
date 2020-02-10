@@ -2,6 +2,7 @@ from datetime import datetime
 from random import randint
 
 from dateutil import parser
+from sqlalchemy import func
 
 from project import db
 
@@ -41,6 +42,13 @@ class Player(db.Model):
 
     def __str__(self):
         return f"{self.fname} {self.lname}"
+
+    def get_training_percentage(self):
+        return (
+            100
+            * len(self.trainings)
+            / db.session.query(func.count(Training.id)).scalar()
+        )
 
 
 class Training(db.Model):
