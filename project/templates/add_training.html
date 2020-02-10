@@ -3,19 +3,16 @@
 {% block content %}
 <form action={{ url_for('trainings.add_training')}} method="post">
     <table class="table">
-        <thead>
-            <th>Név</th>
-            <th>Jelen</th>
-        </thead>
-        <tfoot>
-            <th>Név</th>
-            <th>Jelen</th>
-        </tfoot>
         {% for player in players %}
         <tbody>
-            <td>{{ player.lname }} {{ player.fname }}</td>
-            <td><input type="checkbox" name="{{ present_pattern }}" value=" {{ player.id }}"></td>
+            <td>
+                <label class="checkbox">
+                    <input type="checkbox" value="{{ player.id }}" name="{{ present_pattern }}">
+                    {{ player.lname }} {{ player.fname }}
+                </label>
+            </td>
         </tbody>
+
         {% endfor %}
     </table>
     <input type="submit" value="Hozzáad" class="button is-success">
